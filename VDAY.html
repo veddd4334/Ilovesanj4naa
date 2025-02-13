@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ilovesanjana.com</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: pink;
+            margin: 0;
+            overflow: hidden;
+            flex-direction: column;
+            text-align: center;
+            font-family: "Dancing Script", cursive;
+            position: relative;
+            transition: background-color 1s ease-in-out;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+
+        /* Heart Button */
+        .heart-button {
+            background-color: red;
+            width: 80px;
+            height: 80px;
+            position: relative;
+            border: none;
+            cursor: pointer;
+            transform: rotate(-45deg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease-in-out;
+            z-index: 10;
+        }
+
+        .heart-button::before,
+        .heart-button::after {
+            content: "";
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background-color: red;
+            border-radius: 50%;
+        }
+
+        .heart-button::before {
+            top: -40px;
+            left: 0;
+        }
+
+        .heart-button::after {
+            left: 40px;
+            top: 0;
+        }
+
+        /* Message Page */
+        .message-container {
+            display: none;
+            opacity: 0;
+            padding: 30px;
+            background: pink;
+            border-radius: 20px;
+            max-width: 80%;
+            font-size: 26px;
+            font-family: "Dancing Script", cursive;
+            position: relative;
+            line-height: 1.6;
+            transition: opacity 0.5s ease-in-out;
+            z-index: 5;
+        }
+
+        /* Second and Third Buttons */
+        .second-heart {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .video-heart {
+            display: none;
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+        }
+
+        /* Video Modal */
+        .video-container {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            max-width: 800px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            z-index: 20;
+        }
+
+        .video-container video {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .close-btn {
+            margin-top: 10px;
+            background: red;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- First Heart Button -->
+    <button class="heart-button" id="first-heart"></button>
+
+    <!-- Romantic Message Page -->
+    <div class="message-container" id="message">
+        <p>
+            Happy Valentine's Day my love,  
+            Words won't be able to describe how grateful I am for you and madly and obsessively in love with you,  
+            So instead I put what I'm learning in college to some good use and made this for you.  
+            You're the best thing that's ever happened to me, and I'm never letting you go.  
+            Life has been nothing but fun ever since you came into it.  
+            Every day with you is a new and exciting adventure, and I can't wait to have these adventures for the rest of my life.  
+            The number of stars in the sky would still be less compared to my love for you.  
+            Thank you for being the awesomest, funniest, hottest, most amazing girlfriend and best friend in the entire world.  
+            I love you till no ends, I always will :))
+        </p>
+
+        <!-- Second Heart Button (Spotify) -->
+        <button class="heart-button second-heart" onclick="openSpotify()"></button>
+
+        <!-- Third Heart Button (Video) -->
+        <button class="heart-button video-heart" onclick="showVideo()"></button>
+    </div>
+     <!-- Video Popup -->
+<div class="video-container" id="videoContainer">
+    <iframe 
+        id="loveVideo"
+        src="https://drive.google.com/file/d/1E9r1tJ7-IPDIytQ-zzGJFTRPx7bJAC5a/preview" 
+        width="800" 
+        height="450" 
+        allow="autoplay"
+        frameborder="0">
+    </iframe>
+    <button class="close-btn" onclick="closeVideo()">Close</button>
+</div>
+
+    <!-- JavaScript -->
+    <script>
+        document.getElementById("first-heart").addEventListener("click", function() {
+            let heartButton = document.getElementById('first-heart');
+            let messageContainer = document.getElementById('message');
+
+            // Instantly hide the button and show the message
+            heartButton.style.display = "none";
+            messageContainer.style.display = "block";
+            setTimeout(() => {
+                messageContainer.style.opacity = "1";
+                document.querySelector('.second-heart').style.display = "block";
+                document.querySelector('.video-heart').style.display = "block";
+            }, 100);
+        });
+
+        function openSpotify() {
+            window.open("https://open.spotify.com/playlist/1HYq42Ft3POwcrJtjrtcj7?si=wua9VsigTmil9JZy4L01ww&pi=dsBXn-RsQwe8u", "_blank");
+        }
+
+        function showVideo() {
+            document.getElementById("videoContainer").style.display = "block";
+            document.getElementById("loveVideo").play();
+        }
+
+        function closeVideo() {
+            let videoContainer = document.getElementById("videoContainer");
+            videoContainer.style.display = "none";
+            document.getElementById("loveVideo").pause();
+        }
+    </script>
+
+</body>
+</html>
+
